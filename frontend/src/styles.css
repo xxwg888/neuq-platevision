@@ -193,6 +193,56 @@ button {
   border: 1px solid #e1a08f;
 }
 
+.pipeline-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.pipeline-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 12px;
+  background: rgba(255, 253, 247, 0.96);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 26px rgba(0, 48, 92, 0.07);
+}
+
+.pipeline-step:not(:last-child)::after {
+  position: absolute;
+  right: -9px;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  content: "";
+  background: rgba(255, 253, 247, 0.96);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+
+.pipeline-step span {
+  display: grid;
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  color: #fff;
+  background: var(--neu-blue);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.pipeline-step strong {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
 .workspace {
   display: grid;
   grid-template-columns: minmax(300px, 0.85fr) minmax(360px, 1.15fr);
@@ -428,7 +478,7 @@ button {
 
 .image-board {
   display: grid;
-  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
   margin-top: 18px;
 }
@@ -439,9 +489,17 @@ button {
 }
 
 .image-tile figcaption {
+  display: grid;
+  gap: 3px;
   padding: 10px 12px;
   border-bottom: 1px solid #ded7c6;
   font-weight: 800;
+}
+
+.image-tile figcaption span {
+  color: #756d5d;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .image-tile img,
@@ -626,6 +684,14 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .pipeline-strip {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+
+  .pipeline-step:not(:last-child)::after {
+    display: none;
+  }
+
   .image-board {
     grid-template-columns: repeat(2, minmax(160px, 1fr));
   }
@@ -650,6 +716,7 @@ button {
 
   .metric-grid,
   .metric-grid.two,
+  .pipeline-strip,
   .image-board {
     grid-template-columns: 1fr;
   }

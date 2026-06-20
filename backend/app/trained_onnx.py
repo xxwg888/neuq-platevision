@@ -259,5 +259,8 @@ def recognize_with_trained_onnx(
             "recognize": round(max(total_ms - detect_ms, 0.0), 2),
             "total": round(total_ms, 2),
         },
-        messages=["已使用服务器自训练 YOLOv8n-pose + CRNN-CTC ONNX 模型完成本地 CPU 推理。"],
+        messages=[
+            "已使用服务器自训练 YOLOv8n-pose + CRNN-CTC ONNX 模型完成本地 CPU 推理。",
+            "二值化和字符框仅用于过程展示；CRNN-CTC 对透视校正后的整块车牌进行序列识别。",
+        ],
     )

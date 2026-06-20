@@ -29,6 +29,7 @@ import type {
 } from "./types";
 
 type TabId = "recognize" | "experiments" | "settings";
+type ImageTileModel = { label: string; note?: string; src: string | null };
 
 const tabs: Array<{ id: TabId; label: string; icon: typeof Activity }> = [
   { id: "recognize", label: "单图识别", icon: Activity },
@@ -195,6 +196,25 @@ export default function App() {
   }
 
   const images = recognition?.images;
+  const isOnnxPipeline =
+    selectedProviderInfo?.mode === "local_trained_onnx" || recognition?.provider_used === "trained_onnx";
+  const pipelineSteps = isOnnxPipeline
+    ? ["输入图像", "YOLOv8n-pose 定位与角点", "透视校正", "CRNN-CTC 整牌识别", "结果输出"]
+    : ["输入图像", "颜色阈值定位", "车牌裁剪", "二值化与字符分割", "模板/启发式识别"];
+  const imageTiles: ImageTileModel[] = isOnnxPipeline
+    ? [
+        { label: "定位与角点", note: "YOLOv8n-pose 输出", src: outputUrl(images?.detected ?? null) },
+        { label: "透视校正裁剪", note: "CRNN-CTC 输入", src: outputUrl(images?.plate_crop ?? null) },
+        { label: "二值化辅助图", note: "仅用于展示", src: outputUrl(images?.binary ?? null) },
+        { label: "字符框辅助图", note: "非 CTC 必需步骤", src: outputUrl(images?.segmented ?? null) },
+      ]
+    : [
+        { label: "定位结果", src: outputUrl(images?.detected ?? null) },
+        { label: "车牌裁剪", src: outputUrl(images?.plate_crop ?? null) },
+        { label: "颜色掩膜", src: outputUrl(images?.mask ?? null) },
+        { label: "二值化", src: outputUrl(images?.binary ?? null) },
+        { label: "字符分割", src: outputUrl(images?.segmented ?? null) },
+      ];
 
   return (
     <div className="app-shell">
@@ -260,6 +280,17 @@ export default function App() {
             <XCircle size={18} />
             <span>{error}</span>
           </div>
+        )}
+
+        {activeTab === "recognize" && (
+          <section className="pipeline-strip" aria-label="系统流程">
+            {pipelineSteps.map((step, index) => (
+              <div className="pipeline-step" key={step}>
+                <span>{index + 1}</span>
+                <strong>{step}</strong>
+              </div>
+            ))}
+          </section>
         )}
 
         {activeTab === "recognize" && (
@@ -344,11 +375,9 @@ export default function App() {
 
         {activeTab === "recognize" && (
           <section className="image-board">
-            <ImageTile label="定位结果" src={outputUrl(images?.detected ?? null)} />
-            <ImageTile label="车牌裁剪" src={outputUrl(images?.plate_crop ?? null)} />
-            <ImageTile label="颜色掩膜" src={outputUrl(images?.mask ?? null)} />
-            <ImageTile label="二值化" src={outputUrl(images?.binary ?? null)} />
-            <ImageTile label="字符分割" src={outputUrl(images?.segmented ?? null)} />
+            {imageTiles.map((tile) => (
+              <ImageTile key={tile.label} label={tile.label} note={tile.note} src={tile.src} />
+            ))}
           </section>
         )}
 
@@ -505,10 +534,13 @@ export default function App() {
   );
 }
 
-function ImageTile({ label, src }: { label: string; src: string | null }) {
+function ImageTile({ label, note, src }: { label: string; note?: string; src: string | null }) {
   return (
     <figure className="image-tile">
-      <figcaption>{label}</figcaption>
+      <figcaption>
+        <strong>{label}</strong>
+        {note && <span>{note}</span>}
+      </figcaption>
       {src ? (
         <img alt={label} src={src} />
       ) : (
