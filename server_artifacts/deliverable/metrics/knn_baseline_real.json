@@ -1,0 +1,102 @@
+{
+  "model": "KNN_HOG_baseline",
+  "test_manifest": "/home/chenxinjie/wry/车牌课程设计/data/processed/mixed_real_warp/manifests/test.jsonl",
+  "metrics": {
+    "plate_accuracy": 0.011235955056179775,
+    "character_accuracy": 0.18298555377207062,
+    "avg_edit_distance": 5.719101123595506,
+    "samples": 89,
+    "elapsed_ms_per_image": 0.8565441945965371,
+    "fps": 1167.4820824289584,
+    "k": 5
+  },
+  "success_examples": [
+    {
+      "target": "闽D27S32",
+      "prediction": "闽D27S32"
+    }
+  ],
+  "failure_examples": [
+    {
+      "target": "云EA6036",
+      "prediction": "黑辽贵"
+    },
+    {
+      "target": "湘A4YM12",
+      "prediction": "新A4VMD2"
+    },
+    {
+      "target": "鄂N21255",
+      "prediction": "闽"
+    },
+    {
+      "target": "琼AWW108",
+      "prediction": "琼B08"
+    },
+    {
+      "target": "川AJ72E3",
+      "prediction": "辽甘冀3"
+    },
+    {
+      "target": "宁ACP229",
+      "prediction": "渝AA21"
+    },
+    {
+      "target": "陕A0831Y",
+      "prediction": "甘"
+    },
+    {
+      "target": "川FPU203",
+      "prediction": "蒙闽3"
+    },
+    {
+      "target": "赣H36937",
+      "prediction": "桂W"
+    },
+    {
+      "target": "川AR893R",
+      "prediction": "D川DAR8闽"
+    },
+    {
+      "target": "闽AK661F",
+      "prediction": "闽桂63F"
+    },
+    {
+      "target": "湘U0UM18",
+      "prediction": "冀0蒙8"
+    },
+    {
+      "target": "鄂JA5D59",
+      "prediction": "1冀冀591"
+    },
+    {
+      "target": "川BA4381",
+      "prediction": "闽闽W"
+    },
+    {
+      "target": "宁E34249",
+      "prediction": "渝22491"
+    },
+    {
+      "target": "鄂H5V117",
+      "prediction": "甘1"
+    },
+    {
+      "target": "桂CW8507",
+      "prediction": "冀琼"
+    },
+    {
+      "target": "川BA4643",
+      "prediction": "冀渝4643晋"
+    },
+    {
+      "target": "川AEL970",
+      "prediction": "冀"
+    },
+    {
+      "target": "琼A2Q163",
+      "prediction": "渝C闽"
+    }
+  ],
+  "note": "KNN baseline: HOG features from projection-segmented characters. Character segmentation quality is the main bottleneck."
+}

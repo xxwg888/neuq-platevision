@@ -1,0 +1,178 @@
+{
+  "model": "KNN_HOG_baseline",
+  "test_manifest": "/home/chenxinjie/wry/车牌课程设计/data/processed/ocr_5color/manifests/test.jsonl",
+  "metrics": {
+    "plate_accuracy": 0.5162915686933154,
+    "character_accuracy": 0.8033624683574533,
+    "avg_edit_distance": 1.3829358414511252,
+    "samples": 2977,
+    "elapsed_ms_per_image": 93.5850481399162,
+    "fps": 10.685467602740664,
+    "k": 5
+  },
+  "success_examples": [
+    {
+      "target": "皖A990H5",
+      "prediction": "皖A990H5"
+    },
+    {
+      "target": "皖AWW850",
+      "prediction": "皖AWW850"
+    },
+    {
+      "target": "皖AJ0J22",
+      "prediction": "皖AJ0J22"
+    },
+    {
+      "target": "皖A0U118",
+      "prediction": "皖A0U118"
+    },
+    {
+      "target": "皖AM8T39",
+      "prediction": "皖AM8T39"
+    },
+    {
+      "target": "皖AH9N25",
+      "prediction": "皖AH9N25"
+    },
+    {
+      "target": "皖AU3705",
+      "prediction": "皖AU3705"
+    },
+    {
+      "target": "皖A83X30",
+      "prediction": "皖A83X30"
+    },
+    {
+      "target": "皖AH780A",
+      "prediction": "皖AH780A"
+    },
+    {
+      "target": "皖AM588Y",
+      "prediction": "皖AM588Y"
+    },
+    {
+      "target": "皖ASB929",
+      "prediction": "皖ASB929"
+    },
+    {
+      "target": "皖AB4434",
+      "prediction": "皖AB4434"
+    },
+    {
+      "target": "皖A740J9",
+      "prediction": "皖A740J9"
+    },
+    {
+      "target": "皖A08Q85",
+      "prediction": "皖A08Q85"
+    },
+    {
+      "target": "皖A41476",
+      "prediction": "皖A41476"
+    },
+    {
+      "target": "皖ADU507",
+      "prediction": "皖ADU507"
+    },
+    {
+      "target": "皖AV117C",
+      "prediction": "皖AV117C"
+    },
+    {
+      "target": "皖AEX616",
+      "prediction": "皖AEX616"
+    },
+    {
+      "target": "皖AZ5Z39",
+      "prediction": "皖AZ5Z39"
+    },
+    {
+      "target": "皖AKS228",
+      "prediction": "皖AKS228"
+    }
+  ],
+  "failure_examples": [
+    {
+      "target": "皖CQZ521",
+      "prediction": "皖CZ521L"
+    },
+    {
+      "target": "皖AP277G",
+      "prediction": "津AP2M7G"
+    },
+    {
+      "target": "皖DSC616",
+      "prediction": "C8LC3辽6"
+    },
+    {
+      "target": "皖A0V957",
+      "prediction": "闽鲁湘津67鄂"
+    },
+    {
+      "target": "皖AM1X97",
+      "prediction": "8M皖0赣琼4"
+    },
+    {
+      "target": "皖AN9851",
+      "prediction": "D0晋9冀5川"
+    },
+    {
+      "target": "皖A3X683",
+      "prediction": "苏苏A苏"
+    },
+    {
+      "target": "皖ATX962",
+      "prediction": "藏ATX962"
+    },
+    {
+      "target": "皖AXZ891",
+      "prediction": "桂5N苏8浙1"
+    },
+    {
+      "target": "皖AF8K93",
+      "prediction": "藏AF8K93"
+    },
+    {
+      "target": "皖AW9T11",
+      "prediction": "皖AC9111"
+    },
+    {
+      "target": "皖A98922",
+      "prediction": "蒙A96922"
+    },
+    {
+      "target": "皖AY848S",
+      "prediction": "皖AAY48S"
+    },
+    {
+      "target": "浙BE8S31",
+      "prediction": "吉E8S311"
+    },
+    {
+      "target": "皖A06013",
+      "prediction": "皖3060U赣"
+    },
+    {
+      "target": "皖AJM828",
+      "prediction": "皖AAAGA皖"
+    },
+    {
+      "target": "皖AL0P99",
+      "prediction": "皖AK0P99"
+    },
+    {
+      "target": "皖BT088M",
+      "prediction": "皖BT088皖"
+    },
+    {
+      "target": "皖AX2W13",
+      "prediction": "皖AX津6皖赣"
+    },
+    {
+      "target": "皖AGP087",
+      "prediction": "辽A8P8皖7"
+    }
+  ],
+  "note": "KNN baseline: HOG features from projection-segmented characters. Character segmentation quality is the main bottleneck."
+}

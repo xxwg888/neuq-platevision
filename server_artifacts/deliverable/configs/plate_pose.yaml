@@ -1,0 +1,10 @@
+path: /var/tmp/plate_data_cxj/datasets/yolo_pose_5color
+train: images/train
+val: images/val
+test: images/test
+
+kpt_shape: [4, 3]
+flip_idx: [1, 0, 3, 2]
+
+nc: 6
+names: ['blue', 'green', 'yellow_single', 'yellow_double', 'white', 'black']

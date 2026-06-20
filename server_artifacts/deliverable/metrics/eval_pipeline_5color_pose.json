@@ -1,0 +1,46 @@
+{
+  "mode": "pipeline",
+  "checkpoint_ocr": "/home/chenxinjie/wry/车牌课程设计/outputs/models/ocr_best.pt",
+  "checkpoint_yolo": "/home/chenxinjie/wry/车牌课程设计/outputs/yolo_pose/best.pt",
+  "manifest": "/home/chenxinjie/wry/车牌课程设计/data/processed/ocr_5color/manifests/test.jsonl",
+  "detection_metrics": {
+    "TP": 2922,
+    "FP": 43,
+    "FN": 12,
+    "precision": 0.9855,
+    "recall": 0.9959,
+    "F1": 0.9907,
+    "iou_threshold": 0.5
+  },
+  "ocr_metrics": {
+    "plate_accuracy": 0.920602327173169,
+    "character_accuracy": 0.9851603172286284,
+    "avg_edit_distance": 0.10438056125941136
+  },
+  "by_plate_type": {
+    "blue": {
+      "plate_accuracy": 0.9158374792703151,
+      "character_accuracy": 0.984482350153992,
+      "avg_edit_distance": 0.10862354892205639,
+      "samples": 2412
+    },
+    "green": {
+      "plate_accuracy": 0.99,
+      "character_accuracy": 0.99875,
+      "avg_edit_distance": 0.01,
+      "samples": 100
+    },
+    "white": {
+      "plate_accuracy": 0.8870967741935484,
+      "character_accuracy": 0.9815242494226328,
+      "avg_edit_distance": 0.12903225806451613,
+      "samples": 62
+    },
+    "yellow": {
+      "plate_accuracy": 0.9396551724137931,
+      "character_accuracy": 0.9860426929392446,
+      "avg_edit_distance": 0.09770114942528736,
+      "samples": 348
+    }
+  }
+}

@@ -1,0 +1,2 @@
+本项目训练全程仅使用真实公开数据集(CCPD2019 + CCPD-Green + CRPD)。
+未使用任何合成/GAN 数据。合成数据生成脚本(generate_synthetic_dataset.py)已从交付包中剔除。

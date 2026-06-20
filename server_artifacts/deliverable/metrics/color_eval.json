@@ -1,0 +1,68 @@
+{
+  "model": "/home/chenxinjie/wry/车牌课程设计/outputs/yolo_pose/best.pt",
+  "matched_plates": 2922,
+  "overall_color_accuracy": 0.9952,
+  "per_color": {
+    "blue": {
+      "accuracy": 0.9963,
+      "n": 2412,
+      "pred_dist": {
+        "blue": 2403,
+        "white": 3,
+        "yellow_single": 6
+      }
+    },
+    "green": {
+      "accuracy": 1.0,
+      "n": 100,
+      "pred_dist": {
+        "green": 100
+      }
+    },
+    "yellow_single": {
+      "accuracy": 0.9849,
+      "n": 332,
+      "pred_dist": {
+        "yellow_single": 327,
+        "yellow_double": 1,
+        "blue": 4
+      }
+    },
+    "yellow_double": {
+      "accuracy": 1.0,
+      "n": 16,
+      "pred_dist": {
+        "yellow_double": 16
+      }
+    },
+    "white": {
+      "accuracy": 1.0,
+      "n": 62,
+      "pred_dist": {
+        "white": 62
+      }
+    }
+  },
+  "confusion_matrix": {
+    "blue": {
+      "blue": 2403,
+      "white": 3,
+      "yellow_single": 6
+    },
+    "green": {
+      "green": 100
+    },
+    "yellow_single": {
+      "yellow_single": 327,
+      "yellow_double": 1,
+      "blue": 4
+    },
+    "yellow_double": {
+      "yellow_double": 16
+    },
+    "white": {
+      "white": 62
+    }
+  },
+  "note": "colour accuracy on plates correctly localised (IoU>=0.50)."
+}

@@ -1,0 +1,202 @@
+{
+  "model": "CRNN-CTC (province-balanced, 5-colour real data)",
+  "checkpoint": "/home/chenxinjie/wry/车牌课程设计/outputs/models/ocr_best.pt",
+  "overall": {
+    "plate_accuracy": 0.9234,
+    "character_accuracy": 0.9852,
+    "avg_edit_distance": 0.1038,
+    "samples": 2977,
+    "fps": null
+  },
+  "by_plate_type": {
+    "blue": {
+      "plate_accuracy": 0.9184,
+      "character_accuracy": 0.983,
+      "samples": 2463
+    },
+    "green": {
+      "plate_accuracy": 0.99,
+      "character_accuracy": 0.9988,
+      "samples": 100
+    },
+    "white": {
+      "plate_accuracy": 0.9375,
+      "character_accuracy": 0.9933,
+      "samples": 64
+    },
+    "yellow": {
+      "plate_accuracy": 0.9371,
+      "character_accuracy": 0.9816,
+      "samples": 350
+    }
+  },
+  "by_province": {
+    "皖": {
+      "plate_accuracy": 0.8596,
+      "character_accuracy": 0.9689,
+      "samples": 1125
+    },
+    "川": {
+      "plate_accuracy": 0.8777,
+      "character_accuracy": 0.9721,
+      "samples": 139
+    },
+    "苏": {
+      "plate_accuracy": 0.9512,
+      "character_accuracy": 0.993,
+      "samples": 82
+    },
+    "鄂": {
+      "plate_accuracy": 0.9853,
+      "character_accuracy": 0.9979,
+      "samples": 68
+    },
+    "赣": {
+      "plate_accuracy": 0.9552,
+      "character_accuracy": 0.9936,
+      "samples": 67
+    },
+    "湘": {
+      "plate_accuracy": 0.806,
+      "character_accuracy": 0.9531,
+      "samples": 67
+    },
+    "豫": {
+      "plate_accuracy": 0.9697,
+      "character_accuracy": 0.9957,
+      "samples": 66
+    },
+    "粤": {
+      "plate_accuracy": 0.9692,
+      "character_accuracy": 0.9934,
+      "samples": 65
+    },
+    "沪": {
+      "plate_accuracy": 0.9692,
+      "character_accuracy": 0.9956,
+      "samples": 65
+    },
+    "晋": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 65
+    },
+    "鲁": {
+      "plate_accuracy": 0.9531,
+      "character_accuracy": 0.9933,
+      "samples": 64
+    },
+    "蒙": {
+      "plate_accuracy": 0.9844,
+      "character_accuracy": 0.9978,
+      "samples": 64
+    },
+    "藏": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 64
+    },
+    "闽": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 63
+    },
+    "贵": {
+      "plate_accuracy": 0.9841,
+      "character_accuracy": 0.9977,
+      "samples": 63
+    },
+    "黑": {
+      "plate_accuracy": 0.9677,
+      "character_accuracy": 0.9954,
+      "samples": 62
+    },
+    "渝": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 62
+    },
+    "陕": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 62
+    },
+    "甘": {
+      "plate_accuracy": 0.9839,
+      "character_accuracy": 0.9977,
+      "samples": 62
+    },
+    "桂": {
+      "plate_accuracy": 0.9836,
+      "character_accuracy": 0.9883,
+      "samples": 61
+    },
+    "津": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 61
+    },
+    "新": {
+      "plate_accuracy": 0.9672,
+      "character_accuracy": 0.993,
+      "samples": 61
+    },
+    "冀": {
+      "plate_accuracy": 0.9836,
+      "character_accuracy": 0.9977,
+      "samples": 61
+    },
+    "琼": {
+      "plate_accuracy": 1.0,
+      "character_accuracy": 1.0,
+      "samples": 60
+    },
+    "宁": {
+      "plate_accuracy": 0.9667,
+      "character_accuracy": 0.9952,
+      "samples": 60
+    },
+    "云": {
+      "plate_accuracy": 0.9667,
+      "character_accuracy": 0.9952,
+      "samples": 60
+    },
+    "吉": {
+      "plate_accuracy": 0.95,
+      "character_accuracy": 0.9929,
+      "samples": 60
+    },
+    "京": {
+      "plate_accuracy": 0.9714,
+      "character_accuracy": 0.9959,
+      "samples": 35
+    },
+    "辽": {
+      "plate_accuracy": 0.9655,
+      "character_accuracy": 0.9951,
+      "samples": 29
+    },
+    "青": {
+      "plate_accuracy": 0.8966,
+      "character_accuracy": 0.9852,
+      "samples": 29
+    },
+    "浙": {
+      "plate_accuracy": 0.92,
+      "character_accuracy": 0.9771,
+      "samples": 25
+    }
+  },
+  "leakage_check": {
+    "seen_in_train": {
+      "plate_accuracy": 0.9904,
+      "character_accuracy": 0.9986,
+      "samples": 835
+    },
+    "unseen_plates_honest": {
+      "plate_accuracy": 0.8973,
+      "character_accuracy": 0.9777,
+      "samples": 2142
+    }
+  }
+}

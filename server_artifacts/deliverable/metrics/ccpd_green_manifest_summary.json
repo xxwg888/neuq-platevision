@@ -1,0 +1,64 @@
+{
+  "data/processed/ccpd_green_subset/manifests/train.jsonl": {
+    "count": 800,
+    "source_counts": {
+      "CCPD-Green": 800
+    },
+    "plate_type_counts": {
+      "green": 800
+    },
+    "mode_counts": {
+      "new_energy": 800
+    },
+    "length_counts": {
+      "8": 800
+    },
+    "top_provinces": {
+      "皖": 769,
+      "沪": 15,
+      "苏": 9,
+      "粤": 4,
+      "浙": 2,
+      "鲁": 1
+    }
+  },
+  "data/processed/ccpd_green_subset/manifests/val.jsonl": {
+    "count": 100,
+    "source_counts": {
+      "CCPD-Green": 100
+    },
+    "plate_type_counts": {
+      "green": 100
+    },
+    "mode_counts": {
+      "new_energy": 100
+    },
+    "length_counts": {
+      "8": 100
+    },
+    "top_provinces": {
+      "皖": 98,
+      "粤": 1,
+      "鲁": 1
+    }
+  },
+  "data/processed/ccpd_green_subset/manifests/test.jsonl": {
+    "count": 100,
+    "source_counts": {
+      "CCPD-Green": 100
+    },
+    "plate_type_counts": {
+      "green": 100
+    },
+    "mode_counts": {
+      "new_energy": 100
+    },
+    "length_counts": {
+      "8": 100
+    },
+    "top_provinces": {
+      "皖": 99,
+      "苏": 1
+    }
+  }
+}

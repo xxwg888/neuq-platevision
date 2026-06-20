@@ -1,0 +1,263 @@
+{
+  "mode": "ocr",
+  "checkpoint": "/home/chenxinjie/wry/车牌课程设计/outputs/models/ocr_5color_balanced/best.pt",
+  "manifest": "/home/chenxinjie/wry/车牌课程设计/data/processed/ocr_5color/manifests/test.jsonl",
+  "metrics": {
+    "plate_accuracy": 0.7726700251889169,
+    "character_accuracy": 0.9589871611982882,
+    "avg_edit_distance": 0.28967254408060455,
+    "samples": 1588,
+    "elapsed_ms_per_image": 0.8595464211567223,
+    "fps": 1163.404297180674
+  },
+  "by_plate_type": {
+    "blue": {
+      "plate_accuracy": 0.7763929618768328,
+      "character_accuracy": 0.9589442815249267,
+      "avg_edit_distance": 0.2873900293255132,
+      "samples": 1364
+    },
+    "green": {
+      "plate_accuracy": 0.99,
+      "character_accuracy": 0.9975,
+      "avg_edit_distance": 0.02,
+      "samples": 100
+    },
+    "white": {
+      "plate_accuracy": 0.75,
+      "character_accuracy": 0.8928571428571429,
+      "avg_edit_distance": 0.75,
+      "samples": 4
+    },
+    "yellow": {
+      "plate_accuracy": 0.55,
+      "character_accuracy": 0.925,
+      "avg_edit_distance": 0.525,
+      "samples": 120
+    }
+  },
+  "by_source": {
+    "CCPD": {
+      "plate_accuracy": 0.8323809523809523,
+      "character_accuracy": 0.9653061224489796,
+      "avg_edit_distance": 0.24285714285714285,
+      "samples": 1050
+    },
+    "CCPD-Green": {
+      "plate_accuracy": 0.99,
+      "character_accuracy": 0.9975,
+      "avg_edit_distance": 0.02,
+      "samples": 100
+    },
+    "CRPD": {
+      "plate_accuracy": 0.5799086757990868,
+      "character_accuracy": 0.9337899543378996,
+      "avg_edit_distance": 0.4634703196347032,
+      "samples": 438
+    }
+  },
+  "success_examples": [
+    {
+      "target": "皖A990H5",
+      "prediction": "皖A990H5",
+      "correct": true
+    },
+    {
+      "target": "皖CQZ521",
+      "prediction": "皖CQZ521",
+      "correct": true
+    },
+    {
+      "target": "皖AP277G",
+      "prediction": "皖AP277G",
+      "correct": true
+    },
+    {
+      "target": "皖DSC616",
+      "prediction": "皖DSC616",
+      "correct": true
+    },
+    {
+      "target": "皖AWW850",
+      "prediction": "皖AWW850",
+      "correct": true
+    },
+    {
+      "target": "皖AM1X97",
+      "prediction": "皖AM1X97",
+      "correct": true
+    },
+    {
+      "target": "皖AN9851",
+      "prediction": "皖AN9851",
+      "correct": true
+    },
+    {
+      "target": "皖AJ0J22",
+      "prediction": "皖AJ0J22",
+      "correct": true
+    },
+    {
+      "target": "皖ATX962",
+      "prediction": "皖ATX962",
+      "correct": true
+    },
+    {
+      "target": "皖AXZ891",
+      "prediction": "皖AXZ891",
+      "correct": true
+    },
+    {
+      "target": "皖AF8K93",
+      "prediction": "皖AF8K93",
+      "correct": true
+    },
+    {
+      "target": "皖A0U118",
+      "prediction": "皖A0U118",
+      "correct": true
+    },
+    {
+      "target": "皖AM8T39",
+      "prediction": "皖AM8T39",
+      "correct": true
+    },
+    {
+      "target": "皖AH9N25",
+      "prediction": "皖AH9N25",
+      "correct": true
+    },
+    {
+      "target": "皖AY848S",
+      "prediction": "皖AY848S",
+      "correct": true
+    },
+    {
+      "target": "浙BE8S31",
+      "prediction": "浙BE8S31",
+      "correct": true
+    },
+    {
+      "target": "皖A06013",
+      "prediction": "皖A06013",
+      "correct": true
+    },
+    {
+      "target": "皖AJM828",
+      "prediction": "皖AJM828",
+      "correct": true
+    },
+    {
+      "target": "皖AL0P99",
+      "prediction": "皖AL0P99",
+      "correct": true
+    },
+    {
+      "target": "皖AU3705",
+      "prediction": "皖AU3705",
+      "correct": true
+    }
+  ],
+  "failure_examples": [
+    {
+      "target": "皖A0V957",
+      "prediction": "皖A0V9S7",
+      "correct": false
+    },
+    {
+      "target": "皖A3X683",
+      "prediction": "皖A37683",
+      "correct": false
+    },
+    {
+      "target": "皖AW9T11",
+      "prediction": "皖AW9111",
+      "correct": false
+    },
+    {
+      "target": "皖A98922",
+      "prediction": "皖A9B922",
+      "correct": false
+    },
+    {
+      "target": "皖AX2W13",
+      "prediction": "皖AX211F7",
+      "correct": false
+    },
+    {
+      "target": "皖AGP087",
+      "prediction": "皖AGR087",
+      "correct": false
+    },
+    {
+      "target": "皖ALD409",
+      "prediction": "皖ALC409",
+      "correct": false
+    },
+    {
+      "target": "皖AV5R16",
+      "prediction": "皖AV5KR6",
+      "correct": false
+    },
+    {
+      "target": "皖A635X3",
+      "prediction": "皖A63537",
+      "correct": false
+    },
+    {
+      "target": "皖SPZ121",
+      "prediction": "皖SPZE21",
+      "correct": false
+    },
+    {
+      "target": "皖A204H8",
+      "prediction": "皖A20A88",
+      "correct": false
+    },
+    {
+      "target": "皖AEY703",
+      "prediction": "皖AEW725",
+      "correct": false
+    },
+    {
+      "target": "皖ARS399",
+      "prediction": "皖AR5399",
+      "correct": false
+    },
+    {
+      "target": "皖AJ595H",
+      "prediction": "皖AJ59SH",
+      "correct": false
+    },
+    {
+      "target": "皖AG6V65",
+      "prediction": "皖A68963",
+      "correct": false
+    },
+    {
+      "target": "皖A2E302",
+      "prediction": "皖A2E3U2",
+      "correct": false
+    },
+    {
+      "target": "皖AC113X",
+      "prediction": "皖AC116X",
+      "correct": false
+    },
+    {
+      "target": "皖AH9W57",
+      "prediction": "皖AN9W57",
+      "correct": false
+    },
+    {
+      "target": "皖ABH588",
+      "prediction": "皖ABH589",
+      "correct": false
+    },
+    {
+      "target": "皖AM1T15",
+      "prediction": "皖A1T15",
+      "correct": false
+    }
+  ]
+}

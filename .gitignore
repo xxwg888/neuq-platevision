@@ -1,0 +1,44 @@
+**/__pycache__/
+**/*.pyc
+backend/.venv/
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+data/uploads/*
+data/outputs/*
+data/evaluations/*
+data/remote_settings.json
+temp/*
+!.gitkeep
+
+# Local environment files.
+.env
+.env.*
+!.env.example
+*.log
+
+# Local datasets, model weights, generated predictions, and private demo sets.
+server_artifacts/testset_2977/
+server_artifacts/deliverable/models/
+server_artifacts/deliverable/outputs/
+server_artifacts/deliverable/training_records/
+server_artifacts/deliverable/data/processed/
+server_artifacts/deliverable/report/
+server_artifacts/deliverable/figures/
+server_artifacts/deliverable/src/plate_course/synthetic.py
+server_artifacts/deliverable/test_image_list.csv
+server_artifacts/deliverable/**/*.pt
+server_artifacts/deliverable/**/*.onnx
+server_artifacts/deliverable/**/*.pth
+server_artifacts/deliverable/**/*.ckpt
+
+# Archives received from the training server.
+*.tar
+*.tar.gz
+*.zip
+*.rar
+
+.DS_Store
+Thumbs.db

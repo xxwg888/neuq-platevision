@@ -1,0 +1,204 @@
+{
+  "splits": {
+    "train": 11668,
+    "val": 2936,
+    "test": 2977
+  },
+  "by_color": {
+    "train": {
+      "blue": 8075,
+      "yellow_single": 1270,
+      "green": 1600,
+      "white": 407,
+      "yellow_double": 316
+    },
+    "val": {
+      "blue": 2488,
+      "green": 100,
+      "yellow_double": 23,
+      "white": 68,
+      "yellow_single": 257
+    },
+    "test": {
+      "blue": 2463,
+      "green": 100,
+      "yellow_double": 17,
+      "white": 64,
+      "yellow_single": 333
+    }
+  },
+  "by_province": {
+    "云": {
+      "train": 280,
+      "val": 62,
+      "test": 60
+    },
+    "京": {
+      "train": 200,
+      "val": 34,
+      "test": 35
+    },
+    "冀": {
+      "train": 303,
+      "val": 64,
+      "test": 61
+    },
+    "吉": {
+      "train": 282,
+      "val": 59,
+      "test": 60
+    },
+    "宁": {
+      "train": 285,
+      "val": 58,
+      "test": 60
+    },
+    "川": {
+      "train": 800,
+      "val": 138,
+      "test": 139
+    },
+    "新": {
+      "train": 282,
+      "val": 61,
+      "test": 61
+    },
+    "晋": {
+      "train": 292,
+      "val": 60,
+      "test": 65
+    },
+    "桂": {
+      "train": 280,
+      "val": 61,
+      "test": 61
+    },
+    "沪": {
+      "train": 356,
+      "val": 62,
+      "test": 65
+    },
+    "津": {
+      "train": 294,
+      "val": 64,
+      "test": 61
+    },
+    "浙": {
+      "train": 204,
+      "val": 25,
+      "test": 25
+    },
+    "渝": {
+      "train": 293,
+      "val": 62,
+      "test": 62
+    },
+    "湘": {
+      "train": 308,
+      "val": 62,
+      "test": 67
+    },
+    "琼": {
+      "train": 283,
+      "val": 58,
+      "test": 60
+    },
+    "甘": {
+      "train": 291,
+      "val": 60,
+      "test": 62
+    },
+    "皖": {
+      "train": 2338,
+      "val": 1127,
+      "test": 1125
+    },
+    "粤": {
+      "train": 335,
+      "val": 69,
+      "test": 65
+    },
+    "苏": {
+      "train": 527,
+      "val": 80,
+      "test": 82
+    },
+    "蒙": {
+      "train": 284,
+      "val": 59,
+      "test": 64
+    },
+    "藏": {
+      "train": 325,
+      "val": 63,
+      "test": 64
+    },
+    "豫": {
+      "train": 315,
+      "val": 68,
+      "test": 66
+    },
+    "贵": {
+      "train": 279,
+      "val": 60,
+      "test": 63
+    },
+    "赣": {
+      "train": 315,
+      "val": 62,
+      "test": 67
+    },
+    "辽": {
+      "train": 200,
+      "val": 25,
+      "test": 29
+    },
+    "鄂": {
+      "train": 316,
+      "val": 62,
+      "test": 68
+    },
+    "闽": {
+      "train": 295,
+      "val": 59,
+      "test": 63
+    },
+    "陕": {
+      "train": 307,
+      "val": 61,
+      "test": 62
+    },
+    "青": {
+      "train": 200,
+      "val": 27,
+      "test": 29
+    },
+    "鲁": {
+      "train": 318,
+      "val": 64,
+      "test": 64
+    },
+    "黑": {
+      "train": 281,
+      "val": 60,
+      "test": 62
+    }
+  },
+  "by_source": {
+    "train": {
+      "CRPD": 8528,
+      "CCPD-Green": 1600,
+      "CCPD": 1540
+    },
+    "val": {
+      "CCPD": 1050,
+      "CCPD-Green": 100,
+      "CRPD": 1786
+    },
+    "test": {
+      "CCPD": 1050,
+      "CCPD-Green": 100,
+      "CRPD": 1827
+    }
+  }
+}

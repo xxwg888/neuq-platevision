@@ -1,0 +1,203 @@
+{
+  "model": "template_matching_NCC_baseline",
+  "test_manifest": "/home/chenxinjie/wry/车牌课程设计/data/processed/ocr_5color/manifests/test.jsonl",
+  "metrics": {
+    "plate_accuracy": 0.2653678199529728,
+    "character_accuracy": 0.628170224960596,
+    "avg_edit_distance": 2.6150487067517636,
+    "samples": 2977,
+    "elapsed_ms_per_image": 1.1284906350809494,
+    "fps": 886.1393873492513
+  },
+  "by_plate_type": {
+    "blue": {
+      "plate_accuracy": 0.269183922046285,
+      "character_accuracy": 0.6272041763341067,
+      "avg_edit_distance": 2.609419407226959,
+      "samples": 2463
+    },
+    "green": {
+      "plate_accuracy": 0.02,
+      "character_accuracy": 0.46125,
+      "avg_edit_distance": 4.31,
+      "samples": 100
+    },
+    "white": {
+      "plate_accuracy": 0.078125,
+      "character_accuracy": 0.5727069351230425,
+      "avg_edit_distance": 2.984375,
+      "samples": 64
+    },
+    "yellow": {
+      "plate_accuracy": 0.34285714285714286,
+      "character_accuracy": 0.6995918367346938,
+      "avg_edit_distance": 2.1028571428571428,
+      "samples": 350
+    }
+  },
+  "success_examples": [
+    {
+      "target": "皖AH9N25",
+      "prediction": "皖AH9N25"
+    },
+    {
+      "target": "皖AM588Y",
+      "prediction": "皖AM588Y"
+    },
+    {
+      "target": "皖A41476",
+      "prediction": "皖A41476"
+    },
+    {
+      "target": "皖AEX616",
+      "prediction": "皖AEX616"
+    },
+    {
+      "target": "皖ARR420",
+      "prediction": "皖ARR420"
+    },
+    {
+      "target": "皖A12K55",
+      "prediction": "皖A12K55"
+    },
+    {
+      "target": "皖AXT803",
+      "prediction": "皖AXT803"
+    },
+    {
+      "target": "皖AGH509",
+      "prediction": "皖AGH509"
+    },
+    {
+      "target": "湘A7NQ65",
+      "prediction": "湘A7NQ65"
+    },
+    {
+      "target": "皖AC9696",
+      "prediction": "皖AC9696"
+    },
+    {
+      "target": "皖KWG075",
+      "prediction": "皖KWG075"
+    },
+    {
+      "target": "皖A235U0",
+      "prediction": "皖A235U0"
+    },
+    {
+      "target": "苏GRF258",
+      "prediction": "苏GRF258"
+    },
+    {
+      "target": "皖ABK796",
+      "prediction": "皖ABK796"
+    },
+    {
+      "target": "皖AC657L",
+      "prediction": "皖AC657L"
+    },
+    {
+      "target": "皖AK7K57",
+      "prediction": "皖AK7K57"
+    },
+    {
+      "target": "皖AE758M",
+      "prediction": "皖AE758M"
+    },
+    {
+      "target": "皖A510V6",
+      "prediction": "皖A510V6"
+    },
+    {
+      "target": "皖ASY329",
+      "prediction": "皖ASY329"
+    },
+    {
+      "target": "皖AF2Z35",
+      "prediction": "皖AF2Z35"
+    }
+  ],
+  "failure_examples": [
+    {
+      "target": "皖A990H5",
+      "prediction": "陕A99QHS"
+    },
+    {
+      "target": "皖CQZ521",
+      "prediction": "皖C桂5Z11"
+    },
+    {
+      "target": "皖AP277G",
+      "prediction": "苏豫P津津9琼"
+    },
+    {
+      "target": "皖DSC616",
+      "prediction": "UP皖J皖VL"
+    },
+    {
+      "target": "皖AWW850",
+      "prediction": "琼KW鄂黑H2"
+    },
+    {
+      "target": "皖A0V957",
+      "prediction": "沪湘U957J"
+    },
+    {
+      "target": "皖AM1X97",
+      "prediction": "F7F9T17"
+    },
+    {
+      "target": "皖AN9851",
+      "prediction": "J川J学警S1"
+    },
+    {
+      "target": "皖A3X683",
+      "prediction": "京京京京京京L"
+    },
+    {
+      "target": "皖AJ0J22",
+      "prediction": "豫AJ0J22"
+    },
+    {
+      "target": "皖ATX962",
+      "prediction": "豫ATX962"
+    },
+    {
+      "target": "皖AXZ891",
+      "prediction": "L1津TZZJ"
+    },
+    {
+      "target": "皖AF8K93",
+      "prediction": "陕AF8K93"
+    },
+    {
+      "target": "皖AW9T11",
+      "prediction": "浙A鲁蒙苏警湘"
+    },
+    {
+      "target": "皖A0U118",
+      "prediction": "皖AQU118"
+    },
+    {
+      "target": "皖AM8T39",
+      "prediction": "冀AM813H"
+    },
+    {
+      "target": "皖A98922",
+      "prediction": "蒙A9892Z"
+    },
+    {
+      "target": "皖AY848S",
+      "prediction": "蒙AHYN89"
+    },
+    {
+      "target": "浙BE8S31",
+      "prediction": "冀E8S3湘1"
+    },
+    {
+      "target": "皖A06013",
+      "prediction": "UJJ6Q津渝"
+    }
+  ],
+  "note": "Classic template matching: mean-glyph template per class, NCC matching on the SAME projection segmentation as the KNN baseline. Weak on tilt/blur and on many-stroke province glyphs — this is the motivation for the deep recognizer."
+}

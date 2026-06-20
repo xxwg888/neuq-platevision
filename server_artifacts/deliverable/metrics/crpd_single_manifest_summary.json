@@ -1,0 +1,43 @@
+{
+  "data/processed/crpd_single_subset/manifests/all.jsonl": {
+    "count": 1200,
+    "source_counts": {
+      "CRPD": 1200
+    },
+    "plate_type_counts": {
+      "yellow": 237,
+      "blue": 946,
+      "white": 17
+    },
+    "mode_counts": {
+      "single_layer": 1196,
+      "double_layer": 4
+    },
+    "length_counts": {
+      "6": 2,
+      "7": 1198
+    },
+    "top_provinces": {
+      "川": 244,
+      "粤": 57,
+      "皖": 53,
+      "湘": 53,
+      "闽": 43,
+      "豫": 39,
+      "渝": 39,
+      "藏": 37,
+      "鲁": 37,
+      "甘": 36,
+      "鄂": 35,
+      "津": 35,
+      "沪": 35,
+      "赣": 35,
+      "宁": 35,
+      "苏": 35,
+      "字": 34,
+      "桂": 34,
+      "贵": 32,
+      "琼": 31
+    }
+  }
+}

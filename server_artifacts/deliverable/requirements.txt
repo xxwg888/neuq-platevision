@@ -1,0 +1,12 @@
+# 完整环境(训练 + 评估 + 推理)。服务器实测版本,Python 3.10.4。
+# GPU 版 torch 需匹配 CUDA 12.1;CPU 推理见 requirements-cpu-inference.txt。
+torch==2.4.0            # +cu121 (CUDA 12.1)
+torchvision==0.19.0     # +cu121
+ultralytics==8.4.71     # YOLOv8n-pose 训练/推理
+opencv-python==4.13.0   # import cv2
+numpy==2.2.6
+pillow==12.0.0          # import PIL,可视化 CJK 文字
+onnx==1.22.0            # 导出
+onnxruntime==1.23.2     # ONNX 推理(含 CPU)
+pyyaml==6.0.3
+tqdm==4.67.3
