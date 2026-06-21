@@ -624,6 +624,12 @@ button {
   box-shadow: 5px 5px 0 #111;
 }
 
+.provider-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+  box-shadow: none;
+}
+
 .provider-icon {
   display: grid;
   width: 42px;

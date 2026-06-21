@@ -124,7 +124,9 @@ def recognize_ocr_onnx(sess, crop_bgr, charset):
 
 def draw_vis(img_bgr, plates, out_path):
     from PIL import Image, ImageDraw, ImageFont
-    fonts = ["/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
+    _here = Path(__file__).resolve().parent
+    fonts = [str(_here.parent / "fonts" / "NotoSansCJK-Regular.ttc"),
+             "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
              "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"]
     font = next((ImageFont.truetype(f, max(18, img_bgr.shape[0] // 30))
                  for f in fonts if Path(f).is_file()), ImageFont.load_default())

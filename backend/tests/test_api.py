@@ -36,8 +36,10 @@ class ApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         payload = response.json()
         ids = {provider["id"] for provider in payload["providers"]}
-        self.assertIn("opencv_baseline", ids)
         self.assertIn("local_model", ids)
+        self.assertIn("pretrained_hyperlpr", ids)
+        self.assertIn("traditional_knn", ids)
+        self.assertNotIn("opencv_baseline", ids)
         self.assertIn("remote_server", ids)
 
     def test_recognize_returns_images_and_timing(self) -> None:

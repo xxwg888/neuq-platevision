@@ -1,4 +1,9 @@
-export type ProviderId = "opencv_baseline" | "local_model" | "remote_server";
+export type ProviderId =
+  | "local_model"
+  | "pretrained_hyperlpr"
+  | "traditional_knn"
+  | "traditional_ncc"
+  | "remote_server";
 
 export interface ProviderInfo {
   id: ProviderId;
@@ -75,4 +80,3 @@ export interface BatchEvaluationResult {
   errors: BatchItemResult[];
   report_file: string | null;
 }
-

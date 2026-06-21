@@ -129,14 +129,10 @@ def _smooth1d(a: np.ndarray, k: int = 5) -> np.ndarray:
     return np.convolve(a.astype(np.float32), np.ones(k, np.float32) / k, mode="same")
 
 
-def segment_to_n(bw: np.ndarray, n_chars: int) -> list[np.ndarray]:
-    """Force exactly n_chars patches from a binary plate.
-
-    Detect character runs from a smoothed column projection, then deterministically
-    merge the closest neighbours (too many runs) or split the widest run (too few)
-    until exactly n_chars remain. Far more robust than free-running projection when
-    province glyphs fragment or rivets bridge characters.
-    """
+def segment_runs_to_n(bw: np.ndarray, n_chars: int) -> list[tuple[int, int]]:
+    """Like segment_to_n but returns the (x_start, x_end) column runs instead of
+    patches, so callers can report per-character bounding boxes. Single source of
+    truth for the force-to-N segmentation used by every baseline + the demo."""
     h, w = bw.shape
     proj = _smooth1d(bw.sum(axis=0), 5)
     thr = proj.max() * 0.10
@@ -171,7 +167,41 @@ def segment_to_n(bw: np.ndarray, n_chars: int) -> list[np.ndarray]:
         runs[i] = [s, mid]
         runs.insert(i + 1, [mid, e])
 
-    return [bw[:, s:e] for s, e in runs if e > s]
+    return [(s, e) for s, e in runs if e > s]
+
+
+def segment_to_n(bw: np.ndarray, n_chars: int) -> list[np.ndarray]:
+    """Force exactly n_chars patches from a binary plate (see segment_runs_to_n)."""
+    return [bw[:, s:e] for s, e in segment_runs_to_n(bw, n_chars)]
+
+
+def segment_runs(bw: np.ndarray, n_chars: int | None = None) -> list[tuple[int, int]]:
+    """Unified (x_start, x_end) column runs matching segment_characters_projection.
+
+    If n_chars is known -> force-to-N runs; else free-running projection. Mirrors the
+    exact thresholds used by the baselines so per-char bboxes line up with the patches.
+    """
+    if n_chars:
+        runs = segment_runs_to_n(bw, n_chars)
+        if runs:
+            return runs
+    w = bw.shape[1]
+    col_proj = _smooth1d(bw.sum(axis=0), 5)
+    threshold = col_proj.max() * 0.10
+    in_char = False
+    runs = []
+    x_start = 0
+    for x in range(w):
+        if not in_char and col_proj[x] > threshold:
+            x_start = x
+            in_char = True
+        elif in_char and col_proj[x] <= threshold:
+            if x - x_start >= 3:
+                runs.append((x_start, x))
+            in_char = False
+    if in_char and w - x_start >= 3:
+        runs.append((x_start, w))
+    return runs
 
 
 def segment_characters_projection(bw: np.ndarray, n_chars: int | None = None) -> list[np.ndarray]:

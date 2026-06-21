@@ -64,6 +64,15 @@ function providerBadge(provider: ProviderInfo): string {
   if (provider.mode === "local_trained_onnx") {
     return "ONNX";
   }
+  if (provider.mode === "local_pretrained") {
+    return "PRETRAINED";
+  }
+  if (provider.mode === "traditional_knn") {
+    return provider.available ? "KNN" : "MISSING";
+  }
+  if (provider.mode === "traditional_ncc") {
+    return provider.available ? "NCC" : "MISSING";
+  }
   if (provider.mode === "local_stub") {
     return "STUB";
   }
@@ -95,8 +104,13 @@ export default function App() {
       .then((payload) => {
         setProviders(payload.providers);
         setRemoteSettings(payload.remote_settings);
-        if (payload.providers.some((provider) => provider.id === "local_model")) {
+        if (payload.providers.some((provider) => provider.id === "local_model" && provider.available)) {
           setSelectedProvider("local_model");
+        } else {
+          const firstAvailable = payload.providers.find((provider) => provider.available);
+          if (firstAvailable) {
+            setSelectedProvider(firstAvailable.id);
+          }
         }
         setStatus("API connected");
       })
@@ -198,9 +212,24 @@ export default function App() {
   const images = recognition?.images;
   const isOnnxPipeline =
     selectedProviderInfo?.mode === "local_trained_onnx" || recognition?.provider_used === "trained_onnx";
+  const isPretrainedPipeline =
+    selectedProviderInfo?.mode === "local_pretrained" || recognition?.provider_used === "hyperlpr3";
+  const isTraditionalPipeline =
+    selectedProviderInfo?.mode === "traditional_knn" ||
+    selectedProviderInfo?.mode === "traditional_ncc" ||
+    recognition?.provider_used === "hog_knn" ||
+    recognition?.provider_used === "template_ncc";
+  const traditionalClassifier =
+    selectedProviderInfo?.mode === "traditional_ncc" || recognition?.provider_used === "template_ncc"
+      ? "模板 NCC 分类"
+      : "HOG+KNN 分类";
   const pipelineSteps = isOnnxPipeline
     ? ["输入图像", "YOLOv8n-pose 定位与角点", "透视校正", "CRNN-CTC 整牌识别", "结果输出"]
-    : ["输入图像", "颜色阈值定位", "车牌裁剪", "二值化与字符分割", "模板/启发式识别"];
+    : isPretrainedPipeline
+      ? ["输入图像", "HyperLPR3 预训练检测", "车牌裁剪", "预训练识别", "结果输出"]
+    : isTraditionalPipeline
+      ? ["输入图像", "车牌定位/透视校正", "二值化", "投影字符分割", traditionalClassifier]
+      : ["输入图像", "上传图像", "本地处理", "结果生成", "输出"];
   const imageTiles: ImageTileModel[] = isOnnxPipeline
     ? [
         { label: "定位与角点", note: "YOLOv8n-pose 输出", src: outputUrl(images?.detected ?? null) },
@@ -208,13 +237,28 @@ export default function App() {
         { label: "二值化辅助图", note: "仅用于展示", src: outputUrl(images?.binary ?? null) },
         { label: "字符框辅助图", note: "非 CTC 必需步骤", src: outputUrl(images?.segmented ?? null) },
       ]
-    : [
-        { label: "定位结果", src: outputUrl(images?.detected ?? null) },
-        { label: "车牌裁剪", src: outputUrl(images?.plate_crop ?? null) },
-        { label: "颜色掩膜", src: outputUrl(images?.mask ?? null) },
-        { label: "二值化", src: outputUrl(images?.binary ?? null) },
-        { label: "字符分割", src: outputUrl(images?.segmented ?? null) },
-      ];
+    : isPretrainedPipeline
+      ? [
+          { label: "检测结果", note: "HyperLPR3 输出", src: outputUrl(images?.detected ?? null) },
+          { label: "车牌裁剪", note: "预训练模型定位区域", src: outputUrl(images?.plate_crop ?? null) },
+          { label: "二值化辅助图", note: "仅用于展示", src: outputUrl(images?.binary ?? null) },
+          { label: "字符框辅助图", note: "非模型必需步骤", src: outputUrl(images?.segmented ?? null) },
+        ]
+    : isTraditionalPipeline
+      ? [
+          { label: "定位/校正结果", note: "检测框与校正输入", src: outputUrl(images?.detected ?? null) },
+          { label: "车牌裁剪", note: "传统识别输入", src: outputUrl(images?.plate_crop ?? null) },
+          { label: "二值化", note: "Otsu + 形态学", src: outputUrl(images?.binary ?? null) },
+          { label: "投影字符分割", note: "逐字符分类前处理", src: outputUrl(images?.segmented ?? null) },
+          { label: "分类可视化", note: traditionalClassifier, src: outputUrl(images?.mask ?? null) },
+        ]
+      : [
+          { label: "定位结果", src: outputUrl(images?.detected ?? null) },
+          { label: "车牌裁剪", src: outputUrl(images?.plate_crop ?? null) },
+          { label: "颜色掩膜", src: outputUrl(images?.mask ?? null) },
+          { label: "二值化", src: outputUrl(images?.binary ?? null) },
+          { label: "字符分割", src: outputUrl(images?.segmented ?? null) },
+        ];
 
   return (
     <div className="app-shell">
@@ -267,8 +311,9 @@ export default function App() {
               title="Provider"
             >
               {providers.map((provider) => (
-                <option key={provider.id} value={provider.id}>
+                <option disabled={!provider.available} key={provider.id} value={provider.id}>
                   {provider.name}
+                  {provider.available ? "" : " (missing artifacts)"}
                 </option>
               ))}
             </select>
@@ -465,8 +510,9 @@ export default function App() {
               {providers.map((provider) => (
                 <button
                   className={selectedProvider === provider.id ? "provider-card selected" : "provider-card"}
+                  disabled={!provider.available}
                   key={provider.id}
-                  onClick={() => setSelectedProvider(provider.id)}
+                  onClick={() => provider.available && setSelectedProvider(provider.id)}
                   type="button"
                 >
                   <span className="provider-icon">

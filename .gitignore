@@ -21,7 +21,9 @@ temp/*
 
 # Local datasets, model weights, generated predictions, and private demo sets.
 server_artifacts/testset_2977/
-server_artifacts/deliverable/models/
+server_artifacts/deliverable/models/*
+!server_artifacts/deliverable/models/template/
+!server_artifacts/deliverable/models/template/templates.npz
 server_artifacts/deliverable/outputs/
 server_artifacts/deliverable/training_records/
 server_artifacts/deliverable/data/processed/

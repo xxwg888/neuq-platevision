@@ -125,7 +125,7 @@ def update_remote_settings(payload: RemoteSettingsPayload) -> dict[str, object]:
 @app.post("/api/recognize", response_model=RecognitionResult)
 async def recognize(
     file: UploadFile = File(...),
-    provider: str = Form(default="opencv_baseline"),
+    provider: str = Form(default="local_model"),
     return_intermediate: bool = Form(default=True),
 ) -> RecognitionResult:
     image_bytes = await read_upload(file)
@@ -135,7 +135,7 @@ async def recognize(
 @app.post("/api/batch/evaluate", response_model=BatchEvaluationResult)
 async def batch_evaluate(
     files: list[UploadFile] | None = File(default=None),
-    provider: str = Form(default="opencv_baseline"),
+    provider: str = Form(default="local_model"),
     ground_truth: str | None = Form(default=None),
     dataset_dir: str | None = Form(default=None),
     return_intermediate: bool = Form(default=True),
@@ -216,4 +216,3 @@ def get_output(file_name: str) -> FileResponse:
     if not path.is_relative_to(OUTPUT_DIR.resolve()) or not path.exists():
         raise HTTPException(status_code=404, detail="输出文件不存在。")
     return FileResponse(path)
-

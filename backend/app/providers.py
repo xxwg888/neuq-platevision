@@ -8,6 +8,11 @@ import httpx
 from .local_hyperlpr import is_hyperlpr_available, recognize_with_hyperlpr
 from .schemas import ProviderInfo, RecognitionResult
 from .settings import RemoteSettings, load_remote_settings
+from .traditional_baseline import (
+    is_traditional_knn_available,
+    is_traditional_ncc_available,
+    recognize_with_traditional_baseline,
+)
 from .trained_onnx import is_trained_onnx_available, recognize_with_trained_onnx
 from .vision import SUPPORTED_EXTENSIONS, recognize_with_opencv
 
@@ -16,24 +21,36 @@ def get_providers() -> list[ProviderInfo]:
     remote = load_remote_settings()
     trained_available = is_trained_onnx_available()
     hyperlpr_available = is_hyperlpr_available()
+    knn_available = is_traditional_knn_available()
+    ncc_available = is_traditional_ncc_available()
     return [
         ProviderInfo(
-            id="opencv_baseline",
-            name="OpenCV Baseline",
-            description="颜色阈值、形态学、轮廓筛选和启发式字符分割，适合本地断网演示。",
-            available=True,
-            mode="local",
+            id="local_model",
+            name="Self-trained ONNX Model",
+            description="服务器自训练 YOLOv8n-pose + CRNN-CTC ONNX，本地 CPU 推理；主实验方法。",
+            available=trained_available,
+            mode="local_trained_onnx" if trained_available else "local_stub",
         ),
         ProviderInfo(
-            id="local_model",
-            name="Self-trained ONNX Model" if trained_available else "HyperLPR3 Local Model",
-            description=(
-                "服务器自训练 YOLOv8n-pose + CRNN-CTC ONNX，本地 CPU 推理；失败时回退到 HyperLPR3/OpenCV。"
-                if trained_available
-                else "本地预训练车牌识别模型，优先使用 HyperLPR3；不可用或未检出时回退到 OpenCV baseline。"
-            ),
-            available=True,
-            mode="local_trained_onnx" if trained_available else "local_pretrained" if hyperlpr_available else "local_stub",
+            id="pretrained_hyperlpr",
+            name="HyperLPR3 Pretrained Model",
+            description="HyperLPR3 预训练车牌识别模块，用于和自训练模型、传统 baseline 做效果对比。",
+            available=hyperlpr_available,
+            mode="local_pretrained" if hyperlpr_available else "local_stub",
+        ),
+        ProviderInfo(
+            id="traditional_knn",
+            name="Traditional HOG+KNN Baseline",
+            description="传统对比方法：定位/校正后进行二值化、投影字符分割、HOG 特征提取和 KNN 分类。",
+            available=knn_available,
+            mode="traditional_knn",
+        ),
+        ProviderInfo(
+            id="traditional_ncc",
+            name="Traditional NCC Baseline",
+            description="传统对比方法：定位/校正后进行二值化、投影字符分割，并用字符模板 NCC 相似度分类。",
+            available=ncc_available,
+            mode="traditional_ncc",
         ),
         ProviderInfo(
             id="remote_server",
@@ -85,6 +102,22 @@ async def recognize_by_provider(
     normalized = provider or "opencv_baseline"
     if normalized == "remote_server":
         return await call_remote_provider(image_bytes, file_name, return_intermediate, load_remote_settings())
+    if normalized == "traditional_knn":
+        return recognize_with_traditional_baseline(
+            image_bytes,
+            provider=normalized,
+            method="knn",
+            return_intermediate=return_intermediate,
+        )
+    if normalized == "traditional_ncc":
+        return recognize_with_traditional_baseline(
+            image_bytes,
+            provider=normalized,
+            method="ncc",
+            return_intermediate=return_intermediate,
+        )
+    if normalized == "pretrained_hyperlpr":
+        return recognize_with_hyperlpr(image_bytes, provider=normalized, return_intermediate=return_intermediate)
     if normalized == "local_model":
         onnx_error: Exception | None = None
         try:
