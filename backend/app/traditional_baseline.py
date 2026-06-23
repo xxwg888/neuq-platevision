@@ -329,8 +329,8 @@ def _draw_segments(plate: np.ndarray, segments: list[Segment], labels: list[str]
     for index, segment in enumerate(segments):
         x, y, w, h = segment.bbox
         cv2.rectangle(canvas, (x, y), (x + w, y + h), (33, 210, 186), 1)
-        label = labels[index] if index < len(labels) and labels[index].isascii() else str(index + 1)
-        cv2.putText(canvas, label, (x + 1, max(y - 2, 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 180, 255), 1)
+        if index < len(labels) and labels[index].isascii():
+            cv2.putText(canvas, labels[index], (x + 1, max(y - 2, 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 180, 255), 1)
     return cv2.resize(canvas, (320, 96), interpolation=cv2.INTER_NEAREST)
 
 
@@ -342,8 +342,8 @@ def _draw_classifier_view(binary: BinaryPlate, segments: list[Segment], labels: 
         w = segment.bbox[2]
         h = binary.image.shape[0]
         cv2.rectangle(canvas, (x, y), (x + w, h - 1), (33, 210, 186), 1)
-        label = labels[index] if index < len(labels) and labels[index].isascii() else str(index + 1)
-        cv2.putText(canvas, label, (x + 1, min(h - 4, 14)), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 180, 255), 1)
+        if index < len(labels) and labels[index].isascii():
+            cv2.putText(canvas, labels[index], (x + 1, min(h - 4, 14)), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 180, 255), 1)
     return cv2.resize(canvas, (320, 96), interpolation=cv2.INTER_NEAREST)
 
 
